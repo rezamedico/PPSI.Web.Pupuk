@@ -1,0 +1,116 @@
+﻿@model User
+@{
+}
+
+<section class="content-header">
+    <h1>
+        Edit User
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/Master/Petani/Index"><i class="fa fa-dashboard"></i> User</a></li>
+        <li><a href="#">Edit User</a></li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <form id="edit_user" action="/Master/User/UpdateUser" method="post" enctype="multipart/form-data">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <label>Aktor:</label>
+                                    <select id="AktorId" asp-for="AktorId" asp-items="ViewBag.ddAktor" class="form-control selectpicker" style="width: 100%;">
+                                        <option selected value="@null">--Pilih Aktor--</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <label>Username:</label>
+                                        <input type="text" id="Nama" asp-for="Username" class="form-control" placeholder="Nama" value="@Model.Username">
+                                    </div>                                    
+                                    <div class="col-md-4">
+                                        <label>Password:</label>
+                                        <input type="hidden" name="IsCreate" value="1" />
+                                        <input type="password" asp-for="Password" id="Password" class="form-control" readonly="readonly" value="@Model.Password">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix">&nbsp;</div>
+                    </div>
+                    <div class="box-footer">
+                        <button id="btnEditUser" type="submit" class="btn btn-primary">Simpan</button>
+                        &nbsp;
+                        <a class="btn btn-danger" href="/Master/User/Index">
+                            <span class="glyphicon glyphicon-remove-circle"></span> Kembali
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script>
+    $(document).ready(function () {
+
+        $("#AktorId").val("").change();
+
+    }); // end document.ready
+
+    $('#btnEditUser').click(function (e) {
+        var url = $('#edit_user').attr('action');
+        var form = $('#edit_user').serializeArray();
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: form,
+            cache: false,
+            dataType: "json",
+            success: function (callback) {
+                if (callback.data != null) {
+                    $.notify({
+                        // options
+                        icon: 'glyphicon glyphicon-ok',
+                        title: 'Success!',
+                        message: callback.message
+                    }, {
+                            // settings
+                            type: 'success',
+                            delay: 3000
+                        });
+                    window.location.href = "/Master/User/";
+                } else {
+                    $.notify({
+                        // options
+                        icon: 'glyphicon glyphicon-remove',
+                        title: 'Failed!',
+                        message: callback.message
+                    }, {
+                            // settings
+                            type: 'danger',
+                            delay: 3000
+                        });
+                }
+            },
+            error: function (callback) {
+                $.notify({
+                    // options
+                    icon: 'glyphicon glyphicon-remove',
+                    title: 'Failed!',
+                    message: 'Ajax Error'
+                }, {
+                        // settings
+                        type: 'danger',
+                        delay: 3000
+                    });
+            }
+        });
+
+    });
+</script>

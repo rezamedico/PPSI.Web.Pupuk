@@ -1,0 +1,188 @@
+﻿@{
+}
+
+<section class="content-header">
+    <h1> Distributor </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"> <i class="fa fa-dashboard"></i> Home </a> </li>
+        <li><a href="#"> Distributor </a> </li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <a class="btn btn-info" href="/Master/Distributor/CreateDistributor">
+                        <span class="glyphicon glyphicon-plus"></span>Tambah Distributor
+                    </a>
+                </div>
+                <div class="box-body">
+                    <table id="tblDistributor" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>Kode</th>
+                                <th>Nama Distributor</th>
+                                <th>Alamat</th>
+                                <th>Provinsi</th>
+                                <th>Nomor Handphone</th>
+                                <th>Email</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal -->
+<div class="modal modal-info fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Anda yakin ingin menghapus data?
+                </p>
+                <button type="button" class="btn btn-outline" id="btnConfirm">Ya</button>
+                <button type="button" class="btn btn-outline" data-dismiss="modal">Tidak</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var oTable;
+    $(function () {
+        oTable = $('#tblDistributor').dataTable({
+            responsive: true,
+            searchHighlight: true,
+            serverSide: true,
+            //dom: 'R<"dataTables_header"fCi>t<"dataTables_footer"p>',
+            dom: 'JRr<"dataTables_header"Ci>t<"dataTables_footer"p>',
+            //sDom: '<"toolbar">frtip',
+            processing: true,
+            language: {
+                processing: '<div class="spinner spinner-lg"></div>',
+                "zeroRecords": "No data available in table"
+            },
+            colVis: {
+                "buttonText": "<i class='fa fa-columns'></i>",
+                "sAlign": "right"
+            },
+            //bStateSave: true,
+            ajax: {
+                "url": "/Master/Distributor/IndexDataTable",
+            },
+            colResize: {
+                tableWidthFixed: false,
+                exclude: [0, 1, 2, 3, 7, 8]
+            },
+            lengthMenu: [
+                [10, 20, 50, 100, -1],
+                ['10', '20', '50', '100', 'All']
+            ],
+            pageLength: 10,
+            //"bSort": false,
+            "aaSorting": [],
+            columns:
+            [
+                {
+                    data: 'kode',
+                },
+                {
+                    data: 'nama',
+                },
+
+                {
+                    data: 'alamat',
+                },
+                {
+                    data: 'provinsiId',
+                },
+                {
+                    data: 'nomorHandphone',
+                },
+                {
+                    data: 'email',
+                },
+                {
+                    data: 'aktorId',
+                    sortable: false,
+                    searchable: false,
+                    className: "btn-column-40",
+                    "render": function (data, type, row, full, meta) {
+                        return "<center><a href='/Master/Distributor/EditDistributor?distributorId=" + data + "' style='cursor:pointer' title='Edit Distributor'><i class='glyphicon glyphicon-wrench'></i></a>|<a class='deleteconfirm' href='javascript:void(0)' deleteid='" + data + "'style='cursor:pointer' title='Delete Distributor'><i class='glyphicon glyphicon-erase'></i></a></center>";
+                    }
+                }
+            ],
+            "fnCreatedRow": function (nRow, aData, iDataIndex) {
+                $(nRow).attr('data-id', aData.id);
+                $(nRow).addClass('tr-' + aData.color)
+            },
+        });
+
+
+    });
+
+    $(document).on('click', '.deleteconfirm', function () {
+        var deleteid = $(this).attr('deleteid');
+        DeleteConfirm(deleteid);
+    });
+
+    function DeleteConfirm(id) {
+        $("#myModal").modal('show');
+        console.log(id);
+        var _url = "/Master/Distributor/DeleteDistributor" + "?distributorId=" + id;
+        console.log(_url);
+        $("#btnConfirm").click(function () {
+            jQuery.ajax({
+                type: "GET",
+                cache: false,
+                dataType: "json",
+                url: _url.replace(' ', ""),
+                success: function (callback) {
+                    if (callback.data != null) {
+                        oTable.fnDraw();
+                        $.notify({
+                            // options
+                            icon: 'glyphicon glyphicon-ok',
+                            title: 'Berhasil!',
+                            message: callback.message
+                        },
+                            {
+                                // settings
+                                type: 'success',
+                                delay: 3000
+                            });
+                        //notification("success", callback.message, 3000);
+                    }
+                    else {
+                        $.notify({
+                            // options
+                            icon: 'glyphicon glyphicon-ok',
+                            title: 'Berhasil!',
+                            message: callback.message
+                        },
+                            {
+                                // settings
+                                type: 'danger',
+                                delay: 3000
+                            });
+                        //notification("danger", callback.message, 3000);
+                    }
+                },
+                error: function (data) {
+                },
+                complete: function () {
+                }
+            });
+            $("#myModal").modal('hide');
+        });
+    }
+</script>

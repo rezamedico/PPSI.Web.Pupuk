@@ -1,0 +1,70 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DataTables.AspNet.AspNetCore">
+      <Version>2.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="DataTables.AspNet.Core">
+      <Version>2.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="linq2db.Core" Version="1.9.0" />
+    <PackageReference Include="linq2db.MySql" Version="1.9.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc">
+      <Version>2.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design">
+      <Version>2.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="MySql.Data" Version="8.0.8-dmr" />
+    <PackageReference Include="MySqlConnector" Version="0.26.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.0.0" />
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>10.0.3</Version>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Models\PupukPPSIDb.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PupukPPSIDb.generated.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Models\PupukPPSIDb.generated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PupukPPSIDb.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\GoodReceiptNotes\" />
+    <Folder Include="Controllers\Billings\" />
+    <Folder Include="Controllers\Payments\" />
+    <Folder Include="Controllers\Transactions\" />
+    <Folder Include="Controllers\PurchaseOrders\" />
+    <Folder Include="Controllers\PurchaseRequisitions\" />
+    <Folder Include="Views\Billings\" />
+    <Folder Include="Views\GoodReceiptNotes\" />
+    <Folder Include="Views\InitialStock\" />
+    <Folder Include="Views\Payments\" />
+    <Folder Include="Views\PurchaseOrders\" />
+    <Folder Include="Views\PurchaseRequisitions\" />
+    <Folder Include="Views\Transactions\" />
+  </ItemGroup>
+
+</Project>

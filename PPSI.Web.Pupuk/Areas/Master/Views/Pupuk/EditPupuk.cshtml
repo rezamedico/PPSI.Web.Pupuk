@@ -1,0 +1,176 @@
+﻿@model MsPupuk
+@{
+}
+
+<section class="content-header">
+    <h1>
+        Edit Pupuk
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/Master/Petani/Index"><i class="fa fa-dashboard"></i> Pupuk</a></li>
+        <li><a href="#">Edit Pupuk</a></li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <form id="edit_pupuk" action="/Master/Pupuk/UpdatePupuk" method="post" enctype="multipart/form-data">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <label>Kode:</label>
+                                    <input type="hidden" name="IsCreate" value="1" />
+                                    <input type="text" asp-for="Kode" id="Kode" class="form-control" readonly="readonly" value="@Model.Kode">
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <label>Nama:</label>
+                                        <input type="text" id="Nama" asp-for="Nama" class="form-control" placeholder="Nama" value="@Model.Nama">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Sumber Pupuk:</label>
+                                        <select id="SumberPupukId" asp-for="SumberPupukId" asp-items="ViewBag.ddSumberPupuk" class="form-control selectpicker" style="width: 100%;">
+                                            <option selected value="@null">--Pilih SumberPupuk--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix">&nbsp;</div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <label>Jenis/Unsur:</label>
+                                        <select id="JenisUnsurId" asp-for="JenisUnsurId" asp-items="ViewBag.ddJenisUnsur" class="form-control selectpicker" style="width: 100%;">
+                                            <option selected value="@null">--Pilih Kabupaten/Kota--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <label>Bentuk Pupuk:</label>
+                                        <select id="BentukPupukId" asp-for="BentukPupukId" asp-items="ViewBag.ddBentukPupuk" class="form-control selectpicker" style="width: 100%;">
+                                            <option selected value="@null">--Pilih Bentuk Pupuk--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <label>Cara Pakai:</label>
+                                        <select id="CaraPakaiId" asp-for="CaraPakaiId" asp-items="ViewBag.ddCaraPakai" class="form-control selectpicker" style="width: 100%;">
+                                            <option selected value="@null">--Pilih Cara Pakai--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix">&nbsp;</div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <label>Cara Pelepasan:</label>
+                                        <select id="CaraPelepasanId" asp-for="CaraPelepasanId" asp-items="ViewBag.ddCaraPelepasan" class="form-control selectpicker" style="width: 100%;">
+                                            <option selected value="@null">--Pilih Cara Pelepasan--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <label>Base Price:</label>
+                                        <input type="text" id="BasePrice" asp-for="BasePrice" class="form-control" placeholder="Base Price" value="@Model.BasePrice">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <label>Komposisi</label>
+                                        <textarea rows="2" id="Komposisi" name="Komposisi" cols="2" class="form-control" placeholder="Komposisi">@Model.Komposisi</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <button id="btnEditPupuk" type="submit" class="btn btn-primary">Simpan</button>
+                        &nbsp;
+                        <a class="btn btn-danger" href="/Master/Petani/Index">
+                            <span class="glyphicon glyphicon-remove-circle"></span> Kembali
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script>
+    $(document).ready(function () {
+        @*var sumberPupukId = @Model.SumberPupukId;
+        var jenisUnsurId = @Model.JenisUnsurId;
+        var bentukPupukId = @Model.BentukPupukId;
+        var caraPakaiId = @Model.CaraPakaiId;
+        $("#SumberPupukId").val(sumberPupukId).change();
+        $("#JenisUnsurId").val(jenisUnsurId).change();
+        $("#BentukPupukId").val(bentukPupukId).change();
+        $("#CaraPakaiId").val(caraPakaiId).change();*@
+
+    }); // end document.ready
+
+    $('#btnEditPupuk').click(function (e) {
+        var url = $('#edit_pupuk').attr('action');
+        var form = $('#edit_pupuk').serializeArray();
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: form,
+            cache: false,
+            dataType: "json",
+            success: function (callback) {
+                if (callback.data != null) {
+                    $.notify({
+                        // options
+                        icon: 'glyphicon glyphicon-ok',
+                        title: 'Success!',
+                        message: callback.message
+                    }, {
+                            // settings
+                            type: 'success',
+                            delay: 3000
+                        });
+                    window.location.href = "/Master/Pupuk/";
+                } else {
+                    $.notify({
+                        // options
+                        icon: 'glyphicon glyphicon-remove',
+                        title: 'Failed!',
+                        message: callback.message
+                    }, {
+                            // settings
+                            type: 'danger',
+                            delay: 3000
+                        });
+                }
+            },
+            error: function (callback) {
+                $.notify({
+                    // options
+                    icon: 'glyphicon glyphicon-remove',
+                    title: 'Failed!',
+                    message: 'Ajax Error'
+                }, {
+                        // settings
+                        type: 'danger',
+                        delay: 3000
+                    });
+            }
+        });
+
+    });
+</script>
