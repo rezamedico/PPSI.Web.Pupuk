@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Server.Kestrel.Transport.Abstractions.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
@@ -19,8 +21,11 @@ namespace PPSI.Web.Pupuk
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost
                 .CreateDefaultBuilder(args)
-                .UseKestrel()
-                .UseUrls("http://*:8090")
+                .UseKestrel(options =>
+                {                    
+                    options.Listen(IPAddress.Any, 8090);
+                })
+                //.UseUrls("http://*:52000")
                 .UseStartup<Startup>()
                 .Build();
     }

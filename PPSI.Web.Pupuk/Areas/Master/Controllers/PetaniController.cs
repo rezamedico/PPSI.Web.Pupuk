@@ -57,11 +57,11 @@ namespace PPSI.Web.Pupuk.Areas.Master.Controllers
         public IActionResult CreatePetani()
         {
             var lProvinsi = _repoHelper.GetDropdownProvinsi();
-            var lKota = _repoHelper.GetDropdownKabupaten();
-            var lKecamatan = _repoHelper.GetDropdownKecamatan();
+            //var lKota = _repoHelper.GetDropdownKabupaten();
+            //var lKecamatan = _repoHelper.GetDropdownKecamatan();
             ViewBag.ddProvinsi = new SelectList(lProvinsi, "RefProvinsiId", "Nama");
-            ViewBag.ddKota = new SelectList(lKota, "RefKotaId", "Nama");
-            ViewBag.ddKecamatan = new SelectList(lKecamatan, "RefAreaId", "NamaArea");
+            //ViewBag.ddKota = new SelectList(lKota, "RefKotaId", "Nama");
+            //ViewBag.ddKecamatan = new SelectList(lKecamatan, "RefAreaId", "NamaArea");
             return View();
         }
 
@@ -141,6 +141,39 @@ namespace PPSI.Web.Pupuk.Areas.Master.Controllers
 
             return Json(new { data = o.Payload, message = o.Messages });
         }
+
+        #region Helper
+        public JsonResult GetKotaByProvinsiId(int provinsiId)
+        {
+            try
+            {
+                var ddKota = _repoHelper.GetDropdownKabupatenByProvinsiId(provinsiId);
+                if (ddKota.Count == 0)
+                    ddKota = _repoHelper.GetDropdownKabupaten();
+
+                return Json(new { ddKota });
+            }
+            catch(Exception)
+            {
+                return Json(new { error = true });
+            }            
+        }
+        public JsonResult GetKecamatanByKabupatenId(int kotaId)
+        {
+            try
+            {
+                var ddKecamatan = _repoHelper.GetDropdownKecamatanByKotaId(kotaId);
+                if (ddKecamatan.Count == 0)
+                    ddKecamatan = _repoHelper.GetDropdownKecamatan();
+
+                return Json(new { ddKecamatan });
+            }
+            catch (Exception)
+            {
+                return Json(new { error = true });
+            }
+        }
+        #endregion
 
     }
 }

@@ -55,6 +55,24 @@ namespace PPSI.Web.Pupuk.Repository
             return lRefKota;
         }
 
+        public List<Refkota> GetDropdownKabupatenByProvinsiId(int provinsiId)
+        {
+            List<Refkota> lRefKota = new List<Refkota>();
+            try
+            {
+                lRefKota = (from a in _db.Refkotas
+                            where a.ProvinsiId == provinsiId
+                            select a).ToList();
+            }
+            catch (Exception ex)
+            {
+                exception = ex.Message;
+                lRefKota = null;
+            }
+            return lRefKota;
+        }
+
+
         public List<Refarea> GetDropdownKecamatan()
         {
             List<Refarea> lRefKecamatan = new List<Refarea>();
@@ -62,6 +80,23 @@ namespace PPSI.Web.Pupuk.Repository
             {
                 lRefKecamatan = (from a in _db.Refareas
                                 select a).ToList();
+            }
+            catch (Exception ex)
+            {
+                exception = ex.Message;
+                lRefKecamatan = null;
+            }
+            return lRefKecamatan;
+        }
+
+        public List<Refarea> GetDropdownKecamatanByKotaId(int kotaId)
+        {
+            List<Refarea> lRefKecamatan = new List<Refarea>();
+            try
+            {
+                lRefKecamatan = (from a in _db.Refareas
+                                 where a.KotaId == kotaId
+                                 select a).ToList();
             }
             catch (Exception ex)
             {
@@ -189,7 +224,30 @@ namespace PPSI.Web.Pupuk.Repository
                 code = string.Empty;
             }
             return code;
-        }        
+        }
+
+        public string GetStoreCode()
+        {
+            string code = string.Empty;
+            SequenceNumbers o = new SequenceNumbers();
+            try
+            {
+                var seq = (from a in _db.SequenceNumbers
+                           where a.FormatKode.Contains("STORE")
+                           select a).AsNoTracking().First();
+                string[] namesArray = seq.FormatKode.Split('-');
+                code = namesArray[0] + (seq.Nilai + 1).ToString("D4");
+                o = seq;
+                o.Nilai = o.Nilai + 1;
+                o.Date = DateTime.Now.Date;
+                _db.Update(o);
+            }
+            catch
+            {
+                code = string.Empty;
+            }
+            return code;
+        }
 
         public Vlogin LoginValidation(string username, string password)
         {

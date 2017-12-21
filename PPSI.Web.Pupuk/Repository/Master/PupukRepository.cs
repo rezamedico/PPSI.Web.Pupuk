@@ -28,8 +28,26 @@ namespace PPSI.Web.Pupuk.Repository.Master
         {
             DataTablesResponse response = null;
             try
-            {                
-                var lPupuk = _db.MsPupuk.Where(x => x.IsDelete == 0).ToList();
+            {
+                var lPupuk = (from a in _db.MsPupuk
+                              join b in _db.StaticData on a.SumberPupukId equals b.StaticDataId
+                              join c in _db.StaticData on a.JenisUnsurId equals c.StaticDataId
+                              join d in _db.StaticData on a.BentukPupukId equals d.StaticDataId
+                              join e in _db.StaticData on a.CaraPakaiId equals e.StaticDataId
+                              join f in _db.StaticData on a.CaraPelepasanId equals f.StaticDataId
+                              select new
+                              {
+                                  a.PupukId,
+                                  a.Kode,
+                                  a.Nama,
+                                  a.BasePrice,
+                                  SumberPupuk = b.Nama,
+                                  JenisUnsur = c.Nama,
+                                  BentukPupuk = d.Nama,
+                                  CaraPakai = e.Nama,
+                                  CaraPelepasan = f.Nama,
+                                  a.Gambar
+                              }).ToList();
                 response = DataTablesResponse.Create(request, lPupuk.Count, lPupuk.Count, lPupuk);
             }
             catch (Exception ex)

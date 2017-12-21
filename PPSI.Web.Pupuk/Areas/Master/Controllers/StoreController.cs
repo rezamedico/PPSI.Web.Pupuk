@@ -74,7 +74,8 @@ namespace PPSI.Web.Pupuk.Areas.Master.Controllers
             string returnMessage = string.Empty;
             string strRepo = string.Empty;
             try
-            {                
+            {
+                param.Kode = _repoHelper.GetStoreCode();
                 param.AddDate = DateTime.Now;
                 param.AddBy = _session.NamaAktor;
                 strRepo = _repository.SaveStore(param);

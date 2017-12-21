@@ -175,62 +175,56 @@
                     });
             }
         });
-        //var validate = $('#edit_employee').valid();
-        //var url = $('#edit_employee').attr('action');
-        //var form = $('#edit_employee').serializeArray();
-        //if (validate == true)
-        //{
-        //    e.preventDefault();
-        //    $.ajax({
-        //        type: "POST",
-        //        url: url,
-        //        data: form,
-        //        cache: false,
-        //        dataType: "json",
-        //        success: function (callback) {
-        //            if (callback > 0) {
-        //                $.notify({
-        //                    // options
-        //                    icon: 'glyphicon glyphicon-ok',
-        //                    title: 'Success!',
-        //                    message: 'Data Saved To Database!'
-        //                }, {
-        //                        // settings
-        //                        type: 'success',
-        //                        delay: 3000
-        //                    });
-        //                window.location.href = "<?php echo site_url('C_admin/employee'); ?>";
-        //            } else {
-        //                $.notify({
-        //                    // options
-        //                    icon: 'glyphicon glyphicon-remove',
-        //                    title: 'Failed!',
-        //                    message: 'Data Already Exist In Database!'
-        //                }, {
-        //                        // settings
-        //                        type: 'danger',
-        //                        delay: 3000
-        //                    });
-        //            }
-        //        },
-        //        error: function (callback) {
-        //            $.notify({
-        //                // options
-        //                icon: 'glyphicon glyphicon-remove',
-        //                title: 'Failed!',
-        //                message: 'Ajax Error'
-        //            }, {
-        //                    // settings
-        //                    type: 'danger',
-        //                    delay: 3000
-        //                });
-        //        }
-        //    });
-        //}
-        //else
-        //{
-        //    $('html, body').animate({ scrollTop: 0 }, 'fast');
-        //}
+
+        $(document).on('change', '#RefProvinsiId', function () {
+            var provinsiId = $(this).val();
+            console.log(provinsiId);
+            var _url = '/Master/Petani/GetKotaByProvinsiId';
+            $.ajax({
+                type: 'POST',
+                async: false,
+                url: _url,
+                cache: false,
+                data: { 'provinsiId': provinsiId },
+                traditional: true,
+                success: function (result) {
+                    console.log(result);
+                    var temp = '<option value>-- Pilih Kabupaten --</option>'
+                    $(result.ddKota).each(function () {
+                        temp = temp + '<option value="' + this.refKotaId + '">' + this.nama + '</option>'
+                    })
+                    $('#RefKabupatenId').html(temp);//.selectpicker('refresh').trigger('change');
+                },
+                error: function (result) {
+                    //Notify('Sorry, There was an error!', 'bottom-right', '5000', 'red', 'fa-warning', true);
+                }
+            });
+        });
+
+        $(document).on('change', '#RefKabupatenId', function () {
+            var kotaId = $(this).val();
+            console.log(kotaId);
+            var _url = '/Master/Petani/GetKecamatanByKabupatenId';
+            $.ajax({
+                type: 'POST',
+                async: false,
+                url: _url,
+                cache: false,
+                data: { 'kotaId': kotaId },
+                traditional: true,
+                success: function (result) {
+                    console.log(result);
+                    var temp = '<option value>-- Pilih Kecamatan --</option>'
+                    $(result.ddKecamatan).each(function () {
+                        temp = temp + '<option value="' + this.refAreaId + '">' + this.namaArea + '</option>'
+                    })
+                    $('#RefKecamatanId').html(temp);
+                },
+                error: function (result) {
+                    //Notify('Sorry, There was an error!', 'bottom-right', '5000', 'red', 'fa-warning', true);
+                }
+            });
+        });
 
     });
 </script>

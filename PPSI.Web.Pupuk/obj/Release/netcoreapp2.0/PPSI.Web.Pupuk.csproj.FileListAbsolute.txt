@@ -1,0 +1,11 @@
+C:\PPSI.Web.Pupuk\PPSI.Web.Pupuk\bin\Release\netcoreapp2.0\PPSI.Web.Pupuk.deps.json
+C:\PPSI.Web.Pupuk\PPSI.Web.Pupuk\bin\Release\netcoreapp2.0\PPSI.Web.Pupuk.runtimeconfig.json
+C:\PPSI.Web.Pupuk\PPSI.Web.Pupuk\bin\Release\netcoreapp2.0\PPSI.Web.Pupuk.runtimeconfig.dev.json
+C:\PPSI.Web.Pupuk\PPSI.Web.Pupuk\bin\Release\netcoreapp2.0\PPSI.Web.Pupuk.dll
+C:\PPSI.Web.Pupuk\PPSI.Web.Pupuk\bin\Release\netcoreapp2.0\PPSI.Web.Pupuk.pdb
+C:\PPSI.Web.Pupuk\PPSI.Web.Pupuk\obj\Release\netcoreapp2.0\PPSI.Web.Pupuk.csprojResolveAssemblyReference.cache
+C:\PPSI.Web.Pupuk\PPSI.Web.Pupuk\obj\Release\netcoreapp2.0\PPSI.Web.Pupuk.csproj.CoreCompileInputs.cache
+C:\PPSI.Web.Pupuk\PPSI.Web.Pupuk\obj\Release\netcoreapp2.0\PPSI.Web.Pupuk.AssemblyInfoInputs.cache
+C:\PPSI.Web.Pupuk\PPSI.Web.Pupuk\obj\Release\netcoreapp2.0\PPSI.Web.Pupuk.AssemblyInfo.cs
+C:\PPSI.Web.Pupuk\PPSI.Web.Pupuk\obj\Release\netcoreapp2.0\PPSI.Web.Pupuk.dll
+C:\PPSI.Web.Pupuk\PPSI.Web.Pupuk\obj\Release\netcoreapp2.0\PPSI.Web.Pupuk.pdb

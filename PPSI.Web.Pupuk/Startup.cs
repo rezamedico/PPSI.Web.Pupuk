@@ -11,6 +11,8 @@ using LinqToDB.Data;
 using LinqToDB.DataProvider.MySql;
 using DataTables.AspNet.AspNetCore;
 using PPSI.Web.Pupuk.Interfaces;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.AspNetCore.Http;
 
 namespace PPSI.Web.Pupuk
 {
@@ -51,6 +53,7 @@ namespace PPSI.Web.Pupuk
 
             //Dependency Injection
             services.AddScoped<IPupukSession, PupukSessionImplementation>();
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             // DataTables.AspNet registration with default options.
             services.RegisterDataTables();
         }

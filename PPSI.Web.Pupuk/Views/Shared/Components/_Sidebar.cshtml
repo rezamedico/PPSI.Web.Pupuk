@@ -17,16 +17,38 @@
         <!--Petani-->
         @if (_session.RoleId == 1)
         {
-            <ul class="sidebar-menu">
-                <li class="header">MAIN NAVIGATION</li>
+        <ul class="sidebar-menu">
+            <li class="header">MAIN NAVIGATION</li>
 
-                <li>
-                    <a href="#">
-                        <i class="fa fa-tachometer"></i> <span>DASHBOARD</span>
-                    </a>
-                </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-tachometer"></i> <span>DASHBOARD</span>
+                </a>
+            </li>
 
-            </ul>
+            <li class="treeview">
+                <a href="#">
+                    <i class="glyphicon glyphicon-transfer"></i>
+                    <span>Stok</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="/#/">
+                            <i class="fa fa-circle-o"></i> <span>Permintaan Pembelian</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/#/">
+                            <i class="fa fa-circle-o"></i> <span>Penerimaan</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
 
         }
 
@@ -34,79 +56,121 @@
         @if (_session.RoleId == 2)
         {
 
-            <ul class="sidebar-menu">
-                <li class="header">MAIN NAVIGATION</li>
+        <ul class="sidebar-menu">
+            <li class="header">MAIN NAVIGATION</li>
 
-                <li>
-                    <a href="#">
-                        <i class="fa fa-tachometer"></i> <span>DASHBOARD</span>
-                    </a>
-                </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-tachometer"></i> <span>DASHBOARD</span>
+                </a>
+            </li>
 
-                <li class="treeview">
-                    <a href="#">
-                        <i class="glyphicon glyphicon-book"></i>
-                        <span>Master Data</span>
-                        <span class="pull-right-container">
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li>
-                            <a href="/Master/Petani/">
-                                <i class="fa fa-apple"></i> <span>Master Petani</span>
-                            </a>
-                        </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="glyphicon glyphicon-book"></i>
+                    <span>Master Data</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="/Master/Petani/">
+                            <i class="fa fa-apple"></i> <span>Master Petani</span>
+                        </a>
+                    </li>
 
-                        <li>
-                            <a href="/Master/Distributor/">
-                                <i class="fa fa-list-alt"></i> <span>Master Distributor</span>
-                            </a>
-                        </li>
+                    <li>
+                        <a href="/Master/Distributor/">
+                            <i class="fa fa-list-alt"></i> <span>Master Distributor</span>
+                        </a>
+                    </li>
 
-                        <li>
-                            <a href="/Master/Produsen">
-                                <i class="fa fa-black-tie"></i> <span>Master Produsen</span>
-                            </a>
-                        </li>
+                    <li>
+                        <a href="/Master/Produsen">
+                            <i class="fa fa-black-tie"></i> <span>Master Produsen</span>
+                        </a>
+                    </li>
 
-                        <li>
-                            <a href="/Master/Pupuk">
-                                <i class="glyphicon glyphicon-leaf"></i> <span>Master Pupuk</span>
-                            </a>
-                        </li>
+                    <li>
+                        <a href="/Master/Pupuk">
+                            <i class="glyphicon glyphicon-leaf"></i> <span>Master Pupuk</span>
+                        </a>
+                    </li>
 
-                        <li>
-                            <a href="/Master/Store">
-                                <i class="glyphicon glyphicon-home"></i> <span>Master Store</span>
-                            </a>
-                        </li>
+                    <li>
+                        <a href="/Master/Store">
+                            <i class="glyphicon glyphicon-home"></i> <span>Master Store</span>
+                        </a>
+                    </li>
 
-                    </ul>
-                </li>
+                </ul>
+            </li>
 
-                <li class="treeview">
-                    <a href="#">
-                        <i class="glyphicon glyphicon-transfer"></i>
-                        <span>Stok</span>
-                        <span class="pull-right-container">
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                    </a>
-                </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="glyphicon glyphicon-transfer"></i>
+                    <span>Stok</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="/#/">
+                            <i class="fa fa-circle-o"></i> <span>Permintaan Pembelian</span>
+                        </a>
+                    </li>
 
-                <li class="treeview">
-                    <a href="#">
-                        <i class="glyphicon glyphicon-shopping-cart"></i>
-                        <span>Transaksi</span>
-                        <span class="pull-right-container">
-                            <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                    </a>
-                </li>
+                    <li>
+                        <a href="/#/">
+                            <i class="fa fa-circle-o"></i> <span>Pesanan Pembelian</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/#/">
+                            <i class="fa fa-circle-o"></i> <span>Penerimaan</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="glyphicon glyphicon-shopping-cart"></i>
+                    <span>Transaksi</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="/#/">
+                            <i class="fa fa-circle-o"></i> <span>Transaksi</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/#/">
+                            <i class="fa fa-circle-o"></i> <span>Tagihan</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="/#/">
+                            <i class="fa fa-circle-o"></i> <span>Pembayaran</span>
+                        </a>
+                    </li>
+
+                </ul>
+
+            </li>
 
 
-            </ul>
+        </ul>
 
         }
 
@@ -120,19 +184,7 @@
                     <a href="#">
                         <i class="fa fa-tachometer"></i> <span>DASHBOARD</span>
                     </a>
-                </li>
-
-                <li>
-                    <a href="/Master/Pupuk/">
-                        <i class="fa fa-apple"></i> <span>Master Pupuk</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="/Master/Store/">
-                        <i class="fa fa-list-alt"></i> <span>Master Store</span>
-                    </a>
-                </li>
+                </li>                
 
             </ul>
 
@@ -160,31 +212,31 @@
                     <ul class="treeview-menu">
                         <li>
                             <a href="/Master/Petani/">
-                                <i class="fa fa-apple"></i> <span>Master Petani</span>
+                                <i class="fa fa-circle-o"></i> <span>Master Petani</span>
                             </a>
                         </li>
 
                         <li>
                             <a href="/Master/Distributor/">
-                                <i class="fa fa-list-alt"></i> <span>Master Distributor</span>
+                                <i class="fa fa-circle-o"></i> <span>Master Distributor</span>
                             </a>
                         </li>
 
                         <li>
                             <a href="/Master/Produsen">
-                                <i class="fa fa-black-tie"></i> <span>Master Produsen</span>
+                                <i class="fa fa-circle-o"></i> <span>Master Produsen</span>
                             </a>
                         </li>
 
                         <li>
                             <a href="/Master/Pupuk">
-                                <i class="glyphicon glyphicon-leaf"></i> <span>Master Pupuk</span>
+                                <i class="fa fa-circle-o"></i> <span>Master Pupuk</span>
                             </a>
                         </li>
 
                         <li>
                             <a href="/Master/Store">
-                                <i class="glyphicon glyphicon-home"></i> <span>Master Store</span>
+                                <i class="fa fa-circle-o"></i> <span>Master Store</span>
                             </a>
                         </li>
 
@@ -199,6 +251,26 @@
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="/#/">
+                                <i class="fa fa-circle-o"></i> <span>Permintaan Pembelian</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/#/">
+                                <i class="fa fa-circle-o"></i> <span>Pesanan Pembelian</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/#/">
+                                <i class="fa fa-circle-o"></i> <span>Penerimaan</span>
+                            </a>
+                        </li>
+
+                    </ul>
                 </li>
 
                 <li class="treeview">
@@ -209,6 +281,28 @@
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
                     </a>
+
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="/#/">
+                                <i class="fa fa-circle-o"></i> <span>Transaksi</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/#/">
+                                <i class="fa fa-circle-o"></i> <span>Tagihan</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/#/">
+                                <i class="fa fa-circle-o"></i> <span>Pembayaran</span>
+                            </a>
+                        </li>
+
+                    </ul>
+
                 </li>
 
                 <li>

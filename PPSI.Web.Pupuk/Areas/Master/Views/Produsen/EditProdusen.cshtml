@@ -177,4 +177,55 @@
         });
 
     });
+
+    $(document).on('change', '#RefProvinsiId', function () {
+        var provinsiId = $(this).val();
+        console.log(provinsiId);
+        var _url = '/Master/Petani/GetKotaByProvinsiId';
+        $.ajax({
+            type: 'POST',
+            async: false,
+            url: _url,
+            cache: false,
+            data: { 'provinsiId': provinsiId },
+            traditional: true,
+            success: function (result) {
+                console.log(result);
+                var temp = '<option value>-- Pilih Kabupaten --</option>'
+                $(result.ddKota).each(function () {
+                    temp = temp + '<option value="' + this.refKotaId + '">' + this.nama + '</option>'
+                })
+                $('#RefKabupatenId').html(temp);//.selectpicker('refresh').trigger('change');
+            },
+            error: function (result) {
+                //Notify('Sorry, There was an error!', 'bottom-right', '5000', 'red', 'fa-warning', true);
+            }
+        });
+    });
+
+    $(document).on('change', '#RefKabupatenId', function () {
+        var kotaId = $(this).val();
+        console.log(kotaId);
+        var _url = '/Master/Petani/GetKecamatanByKabupatenId';
+        $.ajax({
+            type: 'POST',
+            async: false,
+            url: _url,
+            cache: false,
+            data: { 'kotaId': kotaId },
+            traditional: true,
+            success: function (result) {
+                console.log(result);
+                var temp = '<option value>-- Pilih Kecamatan --</option>'
+                $(result.ddKecamatan).each(function () {
+                    temp = temp + '<option value="' + this.refAreaId + '">' + this.namaArea + '</option>'
+                })
+                $('#RefKecamatanId').html(temp);
+            },
+            error: function (result) {
+                //Notify('Sorry, There was an error!', 'bottom-right', '5000', 'red', 'fa-warning', true);
+            }
+        });
+    });
+
 </script>
